@@ -7,10 +7,17 @@ from algoritmo_genetico import algoritmoGenetico
 
 class controlador(QMainWindow):
     
+    TIPOS_PQAQUETES = list()
+    CANTIDAD_PAQUETES = list()
+    CONTADOR_TIPOS = 1
+    CONTADOR_CANTIDAD = 1
+    
     def __init__(self) :
         super().__init__()
         uic.loadUi ("Vista/vista_paquetes.ui", self)
         self.btn_calcular.clicked.connect(self.comenzar)
+        self.btnTipo.clicked.connect(self.agregar_tipos)
+        self.btnCantidades.clicked.connect(self.agregar_cantidades)
     
     def comenzar(self):
         self.btn_calcular.setEnabled(False)
@@ -42,9 +49,10 @@ class controlador(QMainWindow):
                 lista_nuevos = list()
                 lista_individuos = list()
                 if generacion == 0:
-                    lista_tipos_paquetes = algoritmo_genetico.fn_generar_tipos_paquetes()
-                    print(f"TIPOS: {lista_tipos_paquetes}")
-                    lista_paquetes = algoritmo_genetico.fn_generar_paquetes(num_paquetes, lista_tipos_paquetes)
+                    # lista_tipos_paquetes = algoritmo_genetico.fn_generar_tipos_paquetes()
+                    print(f"TIPOS: {self.TIPOS_PQAQUETES}")
+                    lista_paquetes = algoritmo_genetico.fn_generar_paquetes(num_paquetes, self.TIPOS_PQAQUETES, self.CANTIDAD_PAQUETES)
+                    num_paquetes = len(lista_paquetes)
                     lista_individuos = algoritmo_genetico.fn_generar_individuos(num_paquetes, poblacion_inicial)
                     # Aqui se hace Seleccion
                     lista_nuevos = algoritmo_genetico.fn_seleccion(lista_individuos)
@@ -76,16 +84,19 @@ class controlador(QMainWindow):
                 print(f"\nLista Cruzados: \n{lista_cruzados}")
                 print(f"\nLista Mutados: \n{lista_mutados}") '''
                 lista_individuos_por_generacion.append(individuos_finales)
-                #lista_individuos_grafica.append(mejor_peor_promedio)
+                
+                algoritmo_genetico.fn_graficar(lista_individuos_grafica, gen, num_generacion, 1)
             
             t = len(lista_individuos_por_generacion)
             print(f"Cantidad final: {t}")
             
+            algoritmo_genetico.fn_generar_video(num_generacion)
+            
             print(f"\nGrafica: {lista_individuos_grafica}")
-            algoritmo_genetico.fn_graficar(lista_individuos_grafica, num_generacion)
+            algoritmo_genetico.fn_graficar(lista_individuos_grafica, num_generacion, num_generacion, 2)
             
             for generacion in range(len(lista_individuos_por_generacion)):
-                titulo = "\t                 Generacion #" + str(generacion+1)
+                titulo = "\t\t\t\t                 Generacion #" + str(generacion+1)
                 self.lista_generaciones.addItem(titulo)
                 self.lista_generaciones.addItem(" ")
                 print(f"\nlis: {lista_individuos_por_generacion[generacion]}")
@@ -95,15 +106,67 @@ class controlador(QMainWindow):
                     self.lista_generaciones.addItem(item)
                 self.lista_generaciones.addItem(" ")
             
-            print(f"\nLista Padres: \n{lista_individuos}")
-            
+            print(f"\nLista Padres: \n{lista_individuos}")  
         else:
-            print(f"\nAlgunos datos son invalidos:")
-            mensaje = "Algunos datos son invalidos:\n\n"
-            for dato in lista_invalidos:
-                print(f"Campo: {dato[1]} | Dato ingresado: {dato[0]}")
-                mensaje = mensaje + f"Campo: {dato[1]} | Dato ingresado: {dato[0]}\n"
-            print("\nIngresar solo numeros enteros")
-            mensaje = mensaje + "\nIngresar solo numeros enteros"
-            win32api.MessageBox(0, mensaje, "ERROR", win32con.MB_ICONERROR)
+            self.mensaje(lista_invalidos)
         self.btn_calcular.setEnabled(True) # Se habilita el boton para calcular
+        
+    def agregar_tipos(self):
+        algoritmo_genetico = algoritmoGenetico
+        lista_campos = [
+            [self.tamanoPaquete.text(), "Tamaño"], 
+            [self.precioPaquete.text(), "Precio público"], 
+            [self.envioPaquete.text(), "Costo de envio"]
+        ]
+        lista_invalidos = algoritmo_genetico.fn_validar_campos(lista_campos)
+        if len(lista_invalidos) == 0:
+            #lista_tipo_paquetes.append([1, 3, 80, 43])
+            tamano = int(self.tamanoPaquete.text())
+            precio = int(self.precioPaquete.text())
+            envio = int(self.envioPaquete.text())
+            self.TIPOS_PQAQUETES.append([self.CONTADOR_TIPOS, tamano, precio, envio])
+            texto_tipo = f"Categoría: {self.CONTADOR_TIPOS} | Tamaño: {tamano} | Precio: {precio} | Envio: {envio} "
+            self.listaTipos.addItem(texto_tipo)
+            self.tamanoPaquete.setText("")
+            self.precioPaquete.setText("")
+            self.envioPaquete.setText("")
+            self.comboBox.addItem(str(self.CONTADOR_TIPOS))
+            if self.CONTADOR_TIPOS > 1:
+                self.btnCantidades.setEnabled(True)
+            
+            self.CONTADOR_TIPOS += 1
+        else :
+            self.mensaje(lista_invalidos)
+
+    def agregar_cantidades(self):
+        algoritmo_genetico = algoritmoGenetico
+        lista_campos = [
+            [self.cantidadAgregar.text(), "Cantidad"]
+        ]
+        lista_invalidos = algoritmo_genetico.fn_validar_campos(lista_campos)
+        if len(lista_invalidos) == 0:
+            categoria = int(self.comboBox.currentText())
+            cantidad = int(self.cantidadAgregar.text())
+            
+            self.CANTIDAD_PAQUETES.append([cantidad, categoria])
+            texto_agregar = f"Categoría: {categoria} | Cantidad: {cantidad} "
+            self.listaAgregados.addItem(texto_agregar)
+            self.cantidadAgregar.setText("")
+            v = self.comboBox.currentText()
+            print(f"Combo: {v}")
+            if self.CONTADOR_CANTIDAD > 1:
+                self.btn_calcular.setEnabled(True)
+            
+            self.CONTADOR_CANTIDAD += 1
+        else :
+            self.mensaje(lista_invalidos)
+
+    def mensaje(self, invalidos):
+        print(f"\nAlgunos datos son invalidos:")
+        mensaje = "Algunos datos son invalidos:\n\n"
+        for dato in invalidos:
+            print(f"Campo: {dato[1]} | Dato ingresado: {dato[0]}")
+            mensaje = mensaje + f"Campo: {dato[1]} | Dato ingresado: {dato[0]}\n"
+        print("\nIngresar solo numeros enteros")
+        mensaje = mensaje + "\nIngresar solo numeros enteros"
+        win32api.MessageBox(0, mensaje, "ERROR", win32con.MB_ICONERROR)

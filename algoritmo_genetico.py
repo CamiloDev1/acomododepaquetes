@@ -2,6 +2,7 @@ import re
 import random
 import matplotlib.pyplot as plt
 from numpy import cos
+import cv2
 
 class algoritmoGenetico  :
             
@@ -41,7 +42,7 @@ class algoritmoGenetico  :
         lista_tipo_paquetes.append([5, 9, 90, 32])
         return lista_tipo_paquetes
     
-    def fn_generar_paquetes(num_paquetes, lista_tipos_paquetes):
+    def fn_generar_paquetes(num_paquetes, lista_tipos_paquetes, lista_cantidades_paquetes):
         print("\n--------------------------- Gnerar Paquetes ---------------------------")
         lista_paquetes = list()
         lista_aux = [[10,1], [10,2], [6,3], [7,4], [9,5]]
@@ -57,7 +58,7 @@ class algoritmoGenetico  :
         
         
         ID = 1
-        for cantidad in lista_aux:
+        for cantidad in lista_cantidades_paquetes:
             for x in range(cantidad[0]):
                 paquete = lista_tipos_paquetes[cantidad[1]-1]
                 lista_paquetes.append([ID, [paquete[0], paquete[1], paquete[2], paquete[3]]])
@@ -294,7 +295,7 @@ class algoritmoGenetico  :
         
         return lista_auxiliar
       
-    def fn_graficar(individuos, bandera):
+    def fn_graficar(individuos, bandera, generacion, tipo):
         print("\n--------------------------- Graficar ---------------------------")
         contador = 0
         fig = plt.figure(figsize=(12,7))
@@ -317,47 +318,20 @@ class algoritmoGenetico  :
             x.clear()
             y.clear()
             contador += 1   
-            
-        # plt.savefig(f"Imagenes/Historico.png")
+        
+        titulo = 'Comportamiento ' #+ str(bandera)
+        plt.title(titulo)
+        if bandera > 0:
+            plt.xlim(-0.5, generacion)
+            plt.savefig(f"Image/Imagen#{bandera}.png")
         plt.legend(loc='lower right')
-        plt.show()
-    #def fn_poda(lista_mutados, lista_paquetes, tamano_contenedor, pMaxima):     
+        if bandera == generacion and tipo == 2:
+            plt.show()
+        else :
+            plt.close()
+      
     def fn_poda(lista_ordenados, pMaxima):
         print("\n--------------------------- Poda ---------------------------")
-        ''' print(f"Mutados: {lista_mutados}")
-        print(f"Paquetes: {lista_paquetes}")
-        print(f"Contenedor: {tamano_contenedor}") 
-        
-        lista_auxiliar = list()
-        
-        #Se recorre la lsita de individuos
-        for individuo in lista_mutados:
-            espacio = 0
-            costo = 0
-            aux_espa = 0
-            # Se recorre la lista de tipo de paquetes de cada individuo
-            for numero in range(len(individuo)):
-                # Se reccore la lista de paquetes
-                for tipo in lista_paquetes:
-                    # Condición para saber si el tipo id del paquete del individuo es igual id del paquete en la lista de paquetes
-                    if individuo[numero] == tipo[0]:
-                        # Aqui se suman los espacios que ocupa el tipo de paquete que tiene el individuo
-                        espacio = espacio + tipo[1][1]
-                        # Condicional para saber si la suma de los espacios de cada paquete del individuo no excede al tamaño del contenedor
-                        if espacio <= tamano_contenedor:
-                            # aux_espa toma el valor mas grande que la suma de los paquetes del individuo que puede tener sin exceder el tamaño del contenedor
-                            aux_espa = espacio
-                            # costo toma el valor total de la suma de los costos de cada paquete que al sumar sus espacios no exceden el tamaño del contenedor
-                            costo = costo + (tipo[1][2]-tipo[1][3])
-                        else:
-                            break
-            lista_auxiliar.append([individuo, aux_espa, costo])
-        print(f"\nAuxiliar: {lista_auxiliar}")
-        
-        # Se ordena de mejor a peor
-        lista_auxiliar.sort(key=lambda costo : costo[2], reverse=True)
-        print(f"\nOrdenada: {lista_auxiliar}") '''
-        
         # En dado caso de que la cantidad de indivividuos sea mayor a la poblacion maxima se eliminan los peores y se quedan los mejores
         if len(lista_ordenados) > pMaxima :
             print("Es mayor")
@@ -368,3 +342,22 @@ class algoritmoGenetico  :
         print(f"\nCon poda: {lista_ordenados}")
         
         return lista_ordenados
+    
+    def fn_generar_video(generacion):
+        lista_imagenes = list()
+        for imagen in range(2, generacion+1) :
+            imagen_nombre = "Image/Imagen#" + str(imagen) + ".png"
+            openCv = cv2.imread(imagen_nombre)
+            lista_imagenes.append(openCv)
+            
+        img = lista_imagenes[0]
+
+        
+        alto, ancho = img.shape[:2]
+        ruta = "Video/Comportamiento.mp4"
+        video = cv2.VideoWriter(ruta, cv2.VideoWriter_fourcc(*"mp4v"), 2, (ancho, alto))
+        
+        for index in lista_imagenes :
+            video.write(index)
+            
+        video.release()
