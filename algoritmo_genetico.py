@@ -1,7 +1,6 @@
 import re
 import random
 import matplotlib.pyplot as plt
-from numpy import cos
 import cv2
 
 class algoritmoGenetico  :
@@ -24,8 +23,6 @@ class algoritmoGenetico  :
             
         return lista_invalidos
     
-    # 10 mejores por generaciones
-    
     def fn_generar_tipos_paquetes():
         print("\n--------------------------- Gnerar Tipos de Paquetes ---------------------------")
         lista_tipo_paquetes = list()
@@ -45,7 +42,7 @@ class algoritmoGenetico  :
     def fn_generar_paquetes(num_paquetes, lista_tipos_paquetes, lista_cantidades_paquetes):
         print("\n--------------------------- Gnerar Paquetes ---------------------------")
         lista_paquetes = list()
-        lista_aux = [[10,1], [10,2], [6,3], [7,4], [9,5]]
+        #lista_aux = [[10,1], [10,2], [6,3], [7,4], [9,5]]
         #lista_aux = list()
         ''' for x in range(num_paquetes):
             tipo = random.randint(1,3)
@@ -56,7 +53,7 @@ class algoritmoGenetico  :
             # ID+1 = id del paquete; paquete[0] = tipo de paquete; paquete[1]= Espacio que ocupa el paquete; paquete[2]; costo del paquete
             lista_paquetes.append([ID+1, [paquete[0], paquete[1], paquete[2]]]) '''
         
-        
+        lista_cantidades_paquetes.sort(key=lambda cantidad : cantidad[0], reverse=True)
         ID = 1
         for cantidad in lista_cantidades_paquetes:
             for x in range(cantidad[0]):
@@ -65,7 +62,7 @@ class algoritmoGenetico  :
                 ID += 1
                 
         
-        print(f"Auxliar: {lista_aux}")    
+        # print(f"Auxliar: {lista_aux}")    
         print(f"Tipos: {lista_tipos_paquetes}")
         print(f"Paquetes: {lista_paquetes}")
         
@@ -118,7 +115,6 @@ class algoritmoGenetico  :
         for i in todosConTodos:
             print(i)
         return todosConTodos
-        # print(f"Individuo: {todosConTodos[0][0][1][7]}")
         
     def fn_comprobar_desendencia(todosConTodos, PD):
         print("\n--------------------------- Comprobar Desendencia ---------------------------")
@@ -294,8 +290,31 @@ class algoritmoGenetico  :
         print(f"\nOrdenada: {lista_auxiliar}")
         
         return lista_auxiliar
-      
-    def fn_graficar(individuos, bandera, generacion, tipo):
+    
+    def grafica_seleccion_paquetes(lista_paquetes_generacion, generacion):
+        print("\n--------------------------- Graficar Seleccion de Pquetes ---------------------------")
+        
+        print("Generando imagen para creación del video")
+        
+        titulo = "Generacion #" + str(generacion)
+        fig, ax= plt.subplots(1,1)
+        data = list()
+        
+        for individuo in lista_paquetes_generacion:
+            data.append([individuo[0]])
+        
+        column_labels=["Paquetes"]
+        ax.axis('tight')
+        ax.axis('off')
+        tabla = ax.table(cellText=data,colLabels=column_labels,loc="center")
+        tabla.set_fontsize(90)
+        fig.set_figheight(7)
+        fig.set_figwidth(12)
+        plt.title(titulo)
+        plt.savefig(f"Image/Tabla#{generacion}.png")
+        plt.close()
+        
+    def fn_graficar(individuos, generacion):
         print("\n--------------------------- Graficar ---------------------------")
         contador = 0
         fig = plt.figure(figsize=(12,7))
@@ -309,8 +328,7 @@ class algoritmoGenetico  :
             
         while contador < 3 :
             for xy in individuos :
-                   # print(f"xy: {xy[0][0]} | {xy[1][0]} | {xy[2][0]}")
-                print(f"{atributos[contador][0]}: x: {xy[contador][0]} | y: {xy[contador][1]} ")
+                # print(f"{atributos[contador][0]}: x: {xy[contador][0]} | y: {xy[contador][1]} ")
                 x.append(xy[contador][0])
                 y.append(xy[contador][1])
             y.sort()
@@ -319,16 +337,12 @@ class algoritmoGenetico  :
             y.clear()
             contador += 1   
         
-        titulo = 'Comportamiento ' #+ str(bandera)
+        titulo = 'Comportamiento'
         plt.title(titulo)
-        if bandera > 0:
-            plt.xlim(-0.5, generacion)
-            plt.savefig(f"Image/Imagen#{bandera}.png")
+        plt.xlim(-0.5, generacion)
+        plt.scatter(individuos[-1][0][0], individuos[-1][0][1], label= "Mejor individuo", color = "red")
         plt.legend(loc='lower right')
-        if bandera == generacion and tipo == 2:
-            plt.show()
-        else :
-            plt.close()
+        plt.show()
       
     def fn_poda(lista_ordenados, pMaxima):
         print("\n--------------------------- Poda ---------------------------")
@@ -345,19 +359,19 @@ class algoritmoGenetico  :
     
     def fn_generar_video(generacion):
         lista_imagenes = list()
-        for imagen in range(2, generacion+1) :
-            imagen_nombre = "Image/Imagen#" + str(imagen) + ".png"
+        for imagen in range(1, generacion+1) :
+            imagen_nombre = "Image/Tabla#" + str(imagen) + ".png"
             openCv = cv2.imread(imagen_nombre)
             lista_imagenes.append(openCv)
-            
+                
         img = lista_imagenes[0]
 
-        
+            
         alto, ancho = img.shape[:2]
-        ruta = "Video/Comportamiento.mp4"
+        ruta = "Video/Seleccion_paquetes.mp4"
         video = cv2.VideoWriter(ruta, cv2.VideoWriter_fourcc(*"mp4v"), 2, (ancho, alto))
-        
+            
         for index in lista_imagenes :
             video.write(index)
-            
+                
         video.release()

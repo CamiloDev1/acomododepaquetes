@@ -6,21 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1424</width>
-    <height>1025</height>
+    <width>1239</width>
+    <height>917</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Algoritmos Geneticos</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background:rgb(170, 255, 255)</string>
+   <string notr="true">background-color: rgb(255, 255, 255);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>585</x>
+      <x>495</x>
       <y>0</y>
       <width>251</width>
       <height>31</height>
@@ -49,12 +49,12 @@
    </widget>
    <widget class="QPushButton" name="btn_calcular">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>960</y>
+      <x>20</x>
+      <y>650</y>
       <width>111</width>
       <height>41</height>
      </rect>
@@ -73,8 +73,8 @@ background:rgb(255, 255, 255)</string>
    <widget class="QLineEdit" name="pIni">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>50</y>
+      <x>190</x>
+      <y>10</y>
       <width>181</width>
       <height>31</height>
      </rect>
@@ -93,8 +93,8 @@ background:rgb(255, 255, 255)</string>
    <widget class="QLineEdit" name="pMax">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>110</y>
+      <x>190</x>
+      <y>50</y>
       <width>181</width>
       <height>31</height>
      </rect>
@@ -104,7 +104,7 @@ background:rgb(255, 255, 255)</string>
 background:rgb(255, 255, 255)</string>
     </property>
     <property name="text">
-     <string>8</string>
+     <string>10</string>
     </property>
     <property name="placeholderText">
      <string>Ejemplo: 15</string>
@@ -113,8 +113,8 @@ background:rgb(255, 255, 255)</string>
    <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>50</y>
+      <x>20</x>
+      <y>20</y>
       <width>161</width>
       <height>31</height>
      </rect>
@@ -132,8 +132,8 @@ background:rgb(255, 255, 255)</string>
    <widget class="QLabel" name="label_9">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>110</y>
+      <x>10</x>
+      <y>60</y>
       <width>171</width>
       <height>31</height>
      </rect>
@@ -151,8 +151,8 @@ background:rgb(255, 255, 255)</string>
    <widget class="QLabel" name="label_11">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>290</y>
+      <x>20</x>
+      <y>160</y>
       <width>91</width>
       <height>31</height>
      </rect>
@@ -170,8 +170,8 @@ background:rgb(255, 255, 255)</string>
    <widget class="QLabel" name="label_12">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>230</y>
+      <x>10</x>
+      <y>110</y>
       <width>91</width>
       <height>31</height>
      </rect>
@@ -189,8 +189,8 @@ background:rgb(255, 255, 255)</string>
    <widget class="QLineEdit" name="inputPMG">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>230</y>
+      <x>120</x>
+      <y>110</y>
       <width>181</width>
       <height>31</height>
      </rect>
@@ -209,8 +209,8 @@ background:rgb(255, 255, 255)</string>
    <widget class="QLineEdit" name="inputPMI">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>290</y>
+      <x>120</x>
+      <y>160</y>
       <width>181</width>
       <height>31</height>
      </rect>
@@ -229,8 +229,8 @@ background:rgb(255, 255, 255)</string>
    <widget class="QSpinBox" name="generaciones">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>400</y>
+      <x>300</x>
+      <y>270</y>
       <width>42</width>
       <height>31</height>
      </rect>
@@ -246,14 +246,14 @@ background:rgb(255, 255, 255)</string>
      <number>100</number>
     </property>
     <property name="value">
-     <number>1</number>
+     <number>20</number>
     </property>
    </widget>
    <widget class="QLabel" name="label_14">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>400</y>
+      <x>10</x>
+      <y>270</y>
       <width>251</width>
       <height>31</height>
      </rect>
@@ -268,53 +268,11 @@ background:rgb(255, 255, 255)</string>
      <string>Cantidad de generaciones</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="input_num_paquetes">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>200</x>
-      <y>170</y>
-      <width>181</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border: 1px solid;
-background:rgb(255, 255, 255)</string>
-    </property>
-    <property name="text">
-     <string>42</string>
-    </property>
-    <property name="placeholderText">
-     <string>Ejemplo: 10</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_13">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>170</y>
-      <width>141</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string># de paquetes</string>
-    </property>
-   </widget>
    <widget class="QLineEdit" name="input_tamano_contenedor">
     <property name="geometry">
      <rect>
       <x>300</x>
-      <y>460</y>
+      <y>320</y>
       <width>81</width>
       <height>31</height>
      </rect>
@@ -333,8 +291,8 @@ background:rgb(255, 255, 255)</string>
    <widget class="QLabel" name="label_15">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>460</y>
+      <x>70</x>
+      <y>320</y>
       <width>191</width>
       <height>31</height>
      </rect>
@@ -352,8 +310,8 @@ background:rgb(255, 255, 255)</string>
    <widget class="QLabel" name="label_16">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>340</y>
+      <x>20</x>
+      <y>210</y>
       <width>91</width>
       <height>31</height>
      </rect>
@@ -371,8 +329,8 @@ background:rgb(255, 255, 255)</string>
    <widget class="QLineEdit" name="inputPD">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>340</y>
+      <x>120</x>
+      <y>210</y>
       <width>181</width>
       <height>31</height>
      </rect>
@@ -396,8 +354,8 @@ background:rgb(255, 255, 255)</string>
      <rect>
       <x>410</x>
       <y>50</y>
-      <width>1001</width>
-      <height>451</height>
+      <width>811</width>
+      <height>371</height>
      </rect>
     </property>
     <property name="font">
@@ -415,7 +373,7 @@ background: rgb(255, 255, 255)</string>
    <widget class="QLabel" name="label_10">
     <property name="geometry">
      <rect>
-      <x>870</x>
+      <x>750</x>
       <y>20</y>
       <width>161</width>
       <height>21</height>
@@ -439,8 +397,8 @@ background: rgb(255, 255, 255)</string>
    <widget class="QLabel" name="label_17">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>520</y>
+      <x>80</x>
+      <y>360</y>
       <width>161</width>
       <height>31</height>
      </rect>
@@ -458,8 +416,8 @@ background: rgb(255, 255, 255)</string>
    <widget class="QLineEdit" name="tamanoPaquete">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>560</y>
+      <x>100</x>
+      <y>390</y>
       <width>61</width>
       <height>31</height>
      </rect>
@@ -475,8 +433,8 @@ background:rgb(255, 255, 255)</string>
    <widget class="QLineEdit" name="envioPaquete">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>610</y>
+      <x>170</x>
+      <y>430</y>
       <width>181</width>
       <height>31</height>
      </rect>
@@ -492,8 +450,8 @@ background:rgb(255, 255, 255)</string>
    <widget class="QLineEdit" name="precioPaquete">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>560</y>
+      <x>300</x>
+      <y>390</y>
       <width>51</width>
       <height>31</height>
      </rect>
@@ -509,8 +467,8 @@ background:rgb(255, 255, 255)</string>
    <widget class="QLabel" name="label_18">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>560</y>
+      <x>20</x>
+      <y>390</y>
       <width>61</width>
       <height>31</height>
      </rect>
@@ -528,8 +486,8 @@ background:rgb(255, 255, 255)</string>
    <widget class="QLabel" name="label_19">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>560</y>
+      <x>170</x>
+      <y>390</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -550,8 +508,8 @@ background:rgb(255, 255, 255)</string>
    <widget class="QLabel" name="label_20">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>610</y>
+      <x>10</x>
+      <y>430</y>
       <width>131</width>
       <height>31</height>
      </rect>
@@ -575,8 +533,8 @@ background:rgb(255, 255, 255)</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>580</y>
+      <x>20</x>
+      <y>470</y>
       <width>111</width>
       <height>41</height>
      </rect>
@@ -591,12 +549,12 @@ background:rgb(255, 255, 255)</string>
    </widget>
    <widget class="QPushButton" name="btnCantidades">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>800</y>
+      <x>280</x>
+      <y>650</y>
       <width>111</width>
       <height>41</height>
      </rect>
@@ -612,8 +570,8 @@ background:rgb(255, 255, 255)</string>
    <widget class="QLabel" name="label_21">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>720</y>
+      <x>70</x>
+      <y>520</y>
       <width>211</width>
       <height>31</height>
      </rect>
@@ -631,8 +589,8 @@ background:rgb(255, 255, 255)</string>
    <widget class="QLabel" name="label_22">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>780</y>
+      <x>20</x>
+      <y>560</y>
       <width>71</width>
       <height>31</height>
      </rect>
@@ -650,8 +608,8 @@ background:rgb(255, 255, 255)</string>
    <widget class="QLabel" name="label_23">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>840</y>
+      <x>20</x>
+      <y>600</y>
       <width>71</width>
       <height>31</height>
      </rect>
@@ -669,8 +627,8 @@ background:rgb(255, 255, 255)</string>
    <widget class="QLineEdit" name="cantidadAgregar">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>840</y>
+      <x>130</x>
+      <y>610</y>
       <width>211</width>
       <height>31</height>
      </rect>
@@ -686,36 +644,90 @@ background:rgb(255, 255, 255)</string>
    <widget class="QListWidget" name="listaTipos">
     <property name="geometry">
      <rect>
-      <x>640</x>
-      <y>550</y>
+      <x>440</x>
+      <y>500</y>
       <width>256</width>
-      <height>431</height>
+      <height>161</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true">border: 2px solid;
 background: rgb(255, 255, 255)</string>
     </property>
+    <item>
+     <property name="text">
+      <string>Categoría: 1 | Tamaño: 3 | Precio: 50 | Envio: 36</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Categoría: 2 | Tamaño: 9 | Precio: 100 | Envio: 32</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Categoría: 3 | Tamaño: 1 | Precio: 90 | Envio: 85</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Categoría: 4 | Tamaño: 3 | Precio: 60 | Envio: 38</string>
+     </property>
+    </item>
    </widget>
    <widget class="QListWidget" name="listaAgregados">
     <property name="geometry">
      <rect>
-      <x>1030</x>
-      <y>550</y>
+      <x>740</x>
+      <y>500</y>
       <width>256</width>
-      <height>431</height>
+      <height>161</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true">border: 2px solid;
 background: rgb(255, 255, 255)</string>
     </property>
+    <item>
+     <property name="text">
+      <string>Categoría: 1 | Cantidad: 7</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Categoría: 2 | Cantidad: 9</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Categoría: 3 | Cantidad: 8</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Categoría: 4 | Cantidad: 5</string>
+     </property>
+    </item>
    </widget>
    <widget class="QLabel" name="label_24">
     <property name="geometry">
      <rect>
-      <x>630</x>
-      <y>520</y>
+      <x>430</x>
+      <y>460</y>
       <width>271</width>
       <height>21</height>
      </rect>
@@ -738,8 +750,8 @@ background: rgb(255, 255, 255)</string>
    <widget class="QLabel" name="label_25">
     <property name="geometry">
      <rect>
-      <x>1020</x>
-      <y>520</y>
+      <x>730</x>
+      <y>460</y>
       <width>271</width>
       <height>21</height>
      </rect>
@@ -762,8 +774,8 @@ background: rgb(255, 255, 255)</string>
    <widget class="QComboBox" name="comboBox">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>780</y>
+      <x>130</x>
+      <y>570</y>
       <width>211</width>
       <height>31</height>
      </rect>
@@ -771,6 +783,71 @@ background: rgb(255, 255, 255)</string>
     <property name="styleSheet">
      <string notr="true">border: 1px solid;
 background: rgb(255, 255, 255)</string>
+    </property>
+    <item>
+     <property name="text">
+      <string>1</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>2</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>3</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>4</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>5</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QPushButton" name="btnLimpiarTipo">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>470</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 1px solid;
+background:rgb(255, 255, 255)</string>
+    </property>
+    <property name="text">
+     <string>Limpiar Tipos</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnLimpiarCantidad">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>650</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 1px solid;
+background:rgb(255, 255, 255)</string>
+    </property>
+    <property name="text">
+     <string>Limpiar Cantidades</string>
     </property>
    </widget>
   </widget>
